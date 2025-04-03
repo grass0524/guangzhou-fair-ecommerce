@@ -450,7 +450,7 @@ export default function Home() {
   const renderContent = () => {
     switch (selectedKey) {
       case 'store-info':
-        return (
+  return (
           <Card title="店铺信息">
             <Form
               form={form}
@@ -1021,7 +1021,7 @@ export default function Home() {
                     <div>
                       <UploadOutlined />
                       <div style={{ marginTop: 8 }}>上传</div>
-                    </div>
+        </div>
                   </Upload>
                 </Form.Item>
               </Form>
@@ -1216,6 +1216,7 @@ export default function Home() {
                           placeholder="请选择产品分类"
                           showSearch
                           treeDefaultExpandAll
+                          value={form.getFieldValue('category') || undefined}
                         />
                       </Form.Item>
                     </Col>
@@ -1564,53 +1565,49 @@ export default function Home() {
             </Row>
             <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
               <Col span={24}>
-                <Card title="平台活动" extra={<Radio.Group defaultValue="all"><Radio.Button value="all">全部</Radio.Button></Radio.Group>}>
+                <Card title="平台活动" variant="outlined">
                   <List
                     dataSource={[
                       {
-                        title: '广交会线上论坛——礼品及装饰品文创设计',
-                        type: '行业论坛',
-                        time: '4月25日 15:00-17:00',
-                        status: '报名中',
+                        title: '春季新品发布会',
+                        description: '2024年3月15日-3月20日',
+                        image: '/images/spring-event.jpg'
                       },
                       {
-                        title: '颠覆传统，预见风尚新纪元！"广交会"时尚包"新品发布活动',
-                        type: '新品发布',
-                        time: '4月25日 15:00-17:00',
-                        status: '报名中',
-                      },
+                        title: '供应商培训会',
+                        description: '2024年3月25日-3月26日',
+                        image: '/images/training-event.jpg'
+                      }
                     ]}
-                    renderItem={item => (
-                      <List.Item
-                        actions={[
-                          <Button type="primary" key="join">报名</Button>
-                        ]}
-                      >
-                        <List.Item.Meta
-                          avatar={
-                            <Image
-                              src="/activity-banner.jpg"
-                              alt="活动banner"
-                              width={120}
-                              height={80}
-                              style={{ objectFit: 'cover' }}
-                            />
+                    renderItem={(item) => (
+                      <List.Item>
+                        <Card
+                          hoverable
+                          style={{ width: '100%' }}
+                          cover={
+                            <div style={{ 
+                              height: 200, 
+                              background: '#f0f0f0',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              <span style={{ color: '#999' }}>活动图片</span>
+                            </div>
                           }
-                          title={item.title}
-                          description={
-                            <>
-                              <Tag color="blue">{item.type}</Tag>
-                              <span style={{ marginLeft: 8 }}>{item.time}</span>
-                            </>
-                          }
-                        />
+                        >
+                          <Card.Meta
+                            title={item.title}
+                            description={item.description}
+                          />
+                        </Card>
                       </List.Item>
                     )}
                   />
                 </Card>
               </Col>
             </Row>
-          </div>
+    </div>
         )
       default:
         return <h1>欢迎使用广州交易会电商系统</h1>
