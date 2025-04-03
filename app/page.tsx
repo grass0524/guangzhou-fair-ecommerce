@@ -1285,7 +1285,7 @@ export default function Home() {
                         <div>
                           {uploadLoading ? <LoadingOutlined /> : <UploadOutlined />}
                           <div style={{ marginTop: 8 }}>上传</div>
-                        </div>
+    </div>
                       )}
                     </Upload>
                   </Form.Item>
